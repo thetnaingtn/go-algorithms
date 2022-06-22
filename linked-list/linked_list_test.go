@@ -1,6 +1,8 @@
 package linkedlist
 
-import "testing"
+import (
+	"testing"
+)
 
 var (
 	firstNode  = NewNode("Once")
@@ -32,6 +34,24 @@ func TestRead(t *testing.T) {
 		if result != test.expected {
 			t.Fatalf("Expectation doesn't match with actual result expect %s got %s\n", test.expected, result)
 		}
+	}
+}
+
+func TestDelete(t *testing.T) {
+	firstNode.nextNode = secondNode
+	secondNode.nextNode = thirdNode
+	thirdNode.nextNode = fouthNode
+
+	linkedList := NewLinkedList(firstNode)
+	linkedList.Delete(2)
+	var result string
+
+	for i := 0; i < 3; i++ {
+		result += linkedList.Read(i)
+	}
+
+	if result != "OnceUponTime" {
+		t.Fatalf("Expectation doesn't match with actual result expect %s got %s", "OnceUponTime", result)
 	}
 }
 

@@ -52,3 +52,24 @@ func (l LinkedList) Search(term string) int {
 
 	return currentIndex
 }
+
+func (l LinkedList) Delete(index int) {
+	var precedingNode *Node
+	currentNode := l.firstNode
+	currentIndex := 0
+	if index == 0 {
+		l.firstNode = currentNode.nextNode
+		return
+	}
+
+	for currentIndex < index {
+		if currentIndex == index-1 {
+			precedingNode = currentNode
+		}
+
+		currentIndex++
+		currentNode = currentNode.nextNode
+	}
+
+	precedingNode.nextNode = currentNode.nextNode
+}
